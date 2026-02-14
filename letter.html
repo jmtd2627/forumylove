@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>y Love Letter</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    overflow: hidden;
+}
+
+/* Blurred background image with gradient overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -2;
+    background:
+        url('us1.jpg') left top/50% 50% no-repeat,
+        url('us2.jpg') right top/50% 50% no-repeat,
+        url('us2.jpg') left bottom/50% 50% no-repeat,
+        url('us1.jpg') right bottom/50% 50% no-repeat;
+    filter: blur(8px) brightness(0.7);
+    background-color: #2d0a0a;
+}
+body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, #2d0a0a99 0%, #5c1a1a99 50%, #8b2e2e99 100%);
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    color: #ffb3c1;
+    font-size: 20px;
+    animation: floatUp 5s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
+    }
+}
+
+.letter-container {
+    width: 600px;
+    background: #fff;
+    border: 3px solid #8b2e2e;
+    border-radius: 8px;
+    box-shadow:
+        0 0 40px 10px rgba(220, 30, 30, 0.85),
+        0 10px 30px rgba(45, 10, 10, 0.4);
+    overflow: hidden;
+    animation: slideIn 0.6s ease;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.letter-header {
+    background: linear-gradient(135deg, #5c1a1a 0%, #8b2e2e 100%);
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+}
+
+.letter-header h1 {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.letter-body {
+    padding: 30px;
+    min-height: 400px;
+}
+
+.letter-body textarea {
+    width: 100%;
+    height: 350px;
+    border: 2px dashed #8b2e2e;
+    border-radius: 4px;
+    padding: 15px;
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
+    resize: none;
+    outline: none;
+    color: #333;
+    line-height: 1.6;
+    background: #fafafa;
+}
+
+.letter-body textarea:readonly {
+    background: #fff;
+    cursor: text;
+}
+
+.letter-body textarea:focus {
+    border-color: #5c1a1a;
+    box-shadow: inset 0 0 8px rgba(92, 26, 26, 0.1);
+}
+
+.letter-footer {
+    padding: 20px 30px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-save {
+    background: #8b2e2e;
+    color: #fff;
+}
+
+.btn-save:hover {
+    background: #5c1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(92, 26, 26, 0.3);
+}
+
+.btn-back {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-back:hover {
+    background: #e0e0e0;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #8b2e2e;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #8b2e2e;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.back-button:hover {
+    background: #8b2e2e;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+
+    
+
+<div class="letter-container">
+    <div class="letter-header">
+        <h1> This one's for you honey! </h1>
+         <small> Mahal na mahal kita, sana di ka mapagod sakin :(.. Huwag mo ako iwan ha? </small>
+    </div>
+    
+    <div class="letter-body">
+        <textarea id="letterText" readonly placeholder="My Love Yaku,
+
+Happy Valentine’s Day. 💗
+
+I just want you to know how much you mean to me. In this world that can get loud and overwhelming, you are the one who makes me calm. You are my safe place. No matter what happens, no matter how hard the days get, I’m always here - choosing you, loving you, and standing beside you.
+
+I hope you never doubt how important you are to me. You are enough. You are appreciated. You are loved more than you probably realize. I see your efforts, your kindness, your quiet strength - and I’m so proud of you, sobra mahal ko.
+
+Thank you for being you. Thank you for loving me the way you do. I promise to keep reassuring you even when things get tough, supporting you, and growing with you. We’re a team, always. Even if i may not show much most of the time sa'yo.. I am trying my best love :(
+
+Pero as always.. Today and every day, I choose us."></textarea>
+    </div>
+    <div class="letter-footer">
+        <button class="btn-back" onclick="goBack()">Back</button>
+    </div>
+    <script>
+    const letterBox = document.querySelector('.letter-container');
+    const textarea = document.getElementById('letterText');
+    if (letterBox && textarea) {
+        textarea.addEventListener('scroll', function() {
+            const maxOffset = 6; 
+            const percent = textarea.scrollTop / (textarea.scrollHeight - textarea.clientHeight);
+            const offset = (percent - 0.5) * 2 * maxOffset
+            const glowAlpha = 0.85 - Math.abs(percent - 0.5) * 0.8;
+            letterBox.style.boxShadow = `0 ${offset}px 40px 10px rgba(220,30,30,${glowAlpha}), 0 10px 30px rgba(45,10,10,0.4)`;
+            letterBox.style.transform = `translateY(${offset * 0.3}px)`;
+        });
+        textarea.addEventListener('blur', function() {
+            letterBox.style.boxShadow = '0 0 40px 10px rgba(220,30,30,0.85), 0 10px 30px rgba(45,10,10,0.4)';
+            letterBox.style.transform = 'translateY(0)';
+        });
+    }
+    </script>
+    
+   
+<script>
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 15 + 15 + "px";
+    heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 600);
+
+function goBack() {
+    window.location.href = 'mylove.html';
+}
+
+window.addEventListener('load', () => {
+    const saved = localStorage.getItem('myLoveLetter');
+    if (saved) {
+        document.getElementById('letterText').value = saved;
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To My Honey Love</title>
+
+<!-- Google font import for a more romantic feel -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    color: #ffffff;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:#6b0000;
+    text-align:center;
+    background:transparent;
+}
+
+/* Background container */
+.bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    transition: opacity 0.8s ease-in-out;
+    /* slightly darker overall */
+    filter: brightness(0.7);
+    z-index:-2;
+}
+
+/* Overlay */
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    /* radial gradient darkening toward edges */
+    background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+    z-index:-1;
+}
+
+/* Main box */
+.container{
+    max-width:700px;
+    padding:30px 40px;
+    background: rgba(255,255,255,0.15);
+    border-radius:16px;
+    backdrop-filter: blur(8px);
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    animation: fadeIn 1.5s ease;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:10px;
+    font-family: 'Segoe UI', sans-serif;
+    color:#ffffff;
+    text-shadow: 0 0 8px rgba(0,0,0,0.7);
+}
+
+h3{
+    font-size:1.8rem;
+    font-family: 'Segoe UI', sans-serif;
+    margin-bottom:5px;
+    color:#ffffff;
+    text-shadow:0 0 6px rgba(0,0,0,0.6);
+}
+
+.subtitle{
+    font-size:22px;
+    margin-bottom:20px;
+}
+
+.quiz-intro{
+    font-size:18px;
+    margin-bottom:30px;
+    font-style:italic;
+    line-height:1.4;
+}
+
+/* Input */
+input{
+    width:70%;
+    max-width:300px;
+    padding:12px;
+    border-radius:6px;
+    border:2px solid #ffffffaa;
+    outline:none;
+    font-size:16px;
+    margin-bottom:20px;
+    text-align:center;
+    transition:0.3s;
+    background: rgba(255,255,255,0.2);
+    color:#000;
+}
+
+input:focus{
+    transform:scale(1.05);
+}
+
+/* Button */
+button{
+    padding:14px 40px;
+    font-size:20px;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight:600;
+    border:none;
+    border-radius:8px;
+    background:#e07a5f;
+    color:#ffffff;
+    cursor:pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow:0 4px 8px rgba(0,0,0,0.3);
+    min-width:160px;
+}
+
+button:hover{
+    background:#d65f4f;
+    transform:scale(1.05);
+    box-shadow:0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* Footer */
+.footer{
+    margin-top:30px;
+    font-size:18px;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* Floating hearts */
+.heart{
+    position:absolute;
+    color:#ffffff;
+    font-size:20px;
+    animation: floatUp 6s linear infinite;
+    opacity:1;
+}
+
+@keyframes floatUp{
+    from{
+        transform: translateY(100vh) scale(0.5);
+        opacity:1;
+    }
+    50%{
+        opacity:0.6;
+    }
+    to{
+        transform: translateY(-10vh) scale(1.2);
+        opacity:0;
+    }
+}
+
+h4{
+    font-size:1.2rem;
+    margin-bottom:10px;
+    color:#ffffff;
+}
+
+.error{
+    color:#ff6666;
+    margin-top:10px;
+    display:none;
+    font-weight:600;
+}
+
+.footer{
+    margin-top:30px;
+    font-size:18px;
+    color:#ffffff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg" id="bg1"></div>
+<div class="bg" id="bg2"></div>
+<div class="overlay"></div>
+
+<div class="container">
+    <h3>To my honey love</h3>
+    <h1>I love you so much</h1>
+    
+    <div class="quiz-intro">
+        Type out our monthsary, and you'll see what i wrote for you and only you! mwamwa
+    </div>
+
+    <h4>Enter our monthsary date:</h4>
+    <input type="text" id="dateInput" placeholder="MM/DD/YY" maxlength="8">
+    <br>
+    <button id="startButton">Enter »</button>
+    <div class="error" id="errorMsg">Wrong date honey.. try again</div>
+
+    <div class="footer">
+        <br>From your lovely Eli 
+        <br><br>
+        <small>I love you baby ko!</small>
+    </div>
+</div>
+
+<script>
+
+const images = [
+    "us1.jpg",
+    "us2.jpg"
+];
+
+let current = 0;
+const bg1 = document.getElementById("bg1");
+const bg2 = document.getElementById("bg2");
+// start with bg1 visible
+bg1.style.backgroundImage = `url('${images[current]}')`;
+bg1.style.opacity = 1;
+bg2.style.opacity = 0;
+
+// crossfade function
+function switchBg() {
+    const next = 1 - current;
+    const front = current === 0 ? bg2 : bg1;
+    const back = current === 0 ? bg1 : bg2;
+    front.style.backgroundImage = `url('${images[next]}')`;
+    front.style.opacity = 1;
+    back.style.opacity = 0;
+    current = next;
+}
+
+// change background based on horizontal cursor direction
+let lastMove = 0;
+let lastX = null;
+document.addEventListener("mousemove", (e) => {
+    const now = Date.now();
+    if (now - lastMove < 100) return; // quicker response
+    lastMove = now;
+    if (lastX === null) {
+        lastX = e.clientX;
+        return;
+    }
+    const dx = e.clientX - lastX;
+    lastX = e.clientX;
+    if (dx === 0) return;
+    // determine direction: positive -> right (show second image), negative -> left (first image)
+    const desired = dx > 0 ? 1 : 0;
+    if (desired !== current) {
+        // directly switch to desired index without toggling
+        current = desired === 0 ? 1 : 0; // set opposite so switchBg toggles correctly
+        switchBg();
+    }
+});
+
+// auto-formatting for MM/DD/YY as user types
+const dateInput = document.getElementById('dateInput');
+dateInput.addEventListener('input', function () {
+    let v = this.value.replace(/\D/g, '');
+    if (v.length > 2) v = v.slice(0, 2) + '/' + v.slice(2);
+    if (v.length > 5) v = v.slice(0, 5) + '/' + v.slice(5, 7);
+    this.value = v.slice(0, 8);
+});
+
+// custom validation and button behavior
+const error = document.getElementById("errorMsg");
+const startButton = document.getElementById('startButton');
+startButton.addEventListener('click', checkDate);
+
+function checkDate(){
+    const input = dateInput.value.trim();
+    // check format mm/dd/yy and match a specific value
+    const match = input.match(/^(\d{2})\/(\d{2})\/(\d{2})$/);
+    if (match && input === "10/27/25"){
+        // date correct, proceed to letter page
+        error.style.display = "none";
+        window.location.href = 'letter.html';
+    } else {
+        error.style.display = "block";
+    }
+}
+
+/* Generate floating hearts */
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
